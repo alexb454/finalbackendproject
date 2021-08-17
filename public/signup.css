@@ -1,0 +1,29 @@
+body {
+    background-image: url("pinklep.jpeg");
+    background-size: cover;
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+form{
+    position: relative;
+    left: 60%;
+    top: 10rem;
+}
+
+h1{
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+input{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-color: olive;
+}
+
+button{
+    color: fuchsia;
+    background-color: lightskyblue;
+    border-color: yellow;
+}

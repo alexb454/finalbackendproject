@@ -1,0 +1,16 @@
+body {
+    background-image: url("pinklep.jpeg");
+    background-size: cover;
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+#Sub_btn{
+    border-radius: 18px;
+    color: darkorange;
+    background-color: deeppink;
+    position: relative;
+    left: 550px;
+    top: 400px;
+    font-size: 32px;
+}

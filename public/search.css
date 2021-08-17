@@ -1,0 +1,50 @@
+body {
+    background-image: url("pinklep.jpeg");
+    background-size: cover;
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+
+form{
+    position: relative;
+    left: 200%;
+    top: 10rem;
+}
+
+h1{
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+p{
+    color: #FFFDD0;
+    text-align: center;
+}
+
+input{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-color: olive;
+}
+
+select{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-color: olive;
+}
+
+button{
+    color: fuchsia;
+    background-color: lightskyblue;
+    border-color: yellow;
+    
+}
+
+ul{
+    color: rgb(255, 255, 255);
+}
+
+li{
+    color: rgb(255, 255, 255);
+}

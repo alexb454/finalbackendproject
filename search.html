@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The search continues</title>
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+    <a href="/logout"><button type="submit">Logout</button></a>
+    <form method="POST" action="/search">
+        <h1>Lets find an animal!</h1>
+        <p>Type an animal name:</p>
+        <input type="search" id="search" name="search" placeholder="Search...">
+        <p>Choose your database:</p>
+        <select type="text" id="database" name="database">
+            <option value="">Database</option>
+            <option value="">----</option>
+            <option value="Postgres">Postgres</option>
+            <option value="Mongodb">Mongodb</option>
+            <option value="Both">Both</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% if postgresList %}
+            {% for posted in post %}
+                <li>Postgres: {{ posted.animals }}, {{ posted.common_name}}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+    <ul>
+        {% if mongoList %}
+            {% for mongoed in mongo %}
+                <li>Mongodb: {{ mongoed.animals }}, {{ mongoed.common_name}}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+    <ul>
+        {% if bothList %}
+            {% for bothed in both %}
+                <li>Postgres: {{ bothed.animals }}, {{ bothed.common_name}}</li>
+                <li>Mongodb: {{ bothed.animals }}, {{ bothed.common_name}}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</body>
+</html>
