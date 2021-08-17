@@ -15,36 +15,35 @@
         <input type="search" id="search" name="search" placeholder="Search...">
         <p>Choose your database:</p>
         <select type="text" id="database" name="database">
-            <option value="">Database</option>
-            <option value="">----</option>
             <option value="Postgres">Postgres</option>
             <option value="Mongodb">Mongodb</option>
             <option value="Both">Both</option>
         </select>
         <button type="submit">Search</button>
-    </form>
 
-    <ul>
-        {% if postgresList %}
-            {% for posted in post %}
-                <li>Postgres: {{ posted.animals }}, {{ posted.common_name}}</li>
-            {% endfor %}
-        {% endif %}
-    </ul>
-    <ul>
-        {% if mongoList %}
-            {% for mongoed in mongo %}
-                <li>Mongodb: {{ mongoed.animals }}, {{ mongoed.common_name}}</li>
-            {% endfor %}
-        {% endif %}
-    </ul>
-    <ul>
-        {% if bothList %}
-            {% for bothed in both %}
-                <li>Postgres: {{ bothed.animals }}, {{ bothed.common_name}}</li>
-                <li>Mongodb: {{ bothed.animals }}, {{ bothed.common_name}}</li>
-            {% endfor %}
-        {% endif %}
-    </ul>
+
+        <ul>
+            {% if postgresList %}
+                {% for post in post %}
+                    <li>Postgres: {{ post.post }}</li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+        <ul>
+            {% if mongoList %}
+                {% for mongo in mongo %}
+                    <li>Mongodb: {{ mongo.mongo }}</li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+        <ul>
+            {% if bothList %}
+                {% for both in both %}
+                    <li>Postgres: {{ both.both }}</li>
+                    <li>Mongodb: {{ both.both }}</li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </form>
 </body>
 </html>

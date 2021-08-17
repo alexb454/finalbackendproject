@@ -56,13 +56,14 @@ const checkUserLoggedIn = async (req, res, next) => {
 const searchPost = async (req, res) => {
     const email = req.session.email
     const searched = req.body.search
-    let results = await pool.query(`SELECT * FROM mock_data WHERE animals LIKE '%%' AND common_name LIKE '%%'`)
+    let results = await pool.query(`SELECT * FROM mock_data WHERE animals LIKE '%${searched}%' AND common_name LIKE '%${searched}%'`)
     if (results.rows === 0) {
         res.send('Error!! please type before pressing button!!!');
     } else {
         pool.query(`INSERT INTO searchtable (email, searched) VALUES ($1, $2)`, [email, searched]);
     }
-    return results.rows
+    res.send(results.row)
+    //return results.rows
 };
 
 const searchMongo = async (req, res) => {
@@ -71,34 +72,13 @@ const searchMongo = async (req, res) => {
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         let dbo = db.db("sprint");
-        let results = dbo.collection('animals').find({}).toArray()
+        let results = dbo.collection('animals').find({ animals : new RegExp(`${searched}`), common_name : new RegExp(`${searched}`)}).toArray()
         if (err) throw err;
             db.close();
             pool.query(`INSERT INTO searchtable (email, searched) VALUES ($1, $2)`, [email, searched]);
         return results
         });
 }
-
-/*const searchBoth = async (req, res) => {
-    const email = req.session.email
-    const searched = req.body.search
-    let results = await pool.query(`SELECT * FROM mock_data WHERE common_name LIKE 'a-z'`)
-    if (results.rows === 0) {
-        res.send('Error!! please type before pressing button!!!');
-    } else {
-        pool.query(`INSERT INTO searchtable (email, searched) VALUES ($1, $2)`, [email, searched]);
-        return results.rows
-        MongoClient.connect(url, function (err, db) {
-            if (err) throw err;
-            let bark = db.db("sprint");
-            bark.collection("animals").find({ where: ["animals", "common_name"] })
-            let solution = toArray(("animals", "common_name"))
-            if (err) throw err;
-                db.close();
-            });
-    } return results.rows
-    return solution
-};*/
 
 const logOut = (req, res) => {
     req.session.destroy();
@@ -111,6 +91,5 @@ module.exports = {
     sentInfo,
     searchPost,
     searchMongo,
-    //searchBoth,
     checkUserLoggedIn
 }

@@ -4,7 +4,7 @@ const path = require('path');
 const db = require('./database');
 const nunjucks = require('nunjucks');
 const nun = require('./pull');
-const theport = 42069
+const theport = 4206
 
 const app = express();
 
@@ -43,20 +43,11 @@ app.post("/search", db.checkUserLoggedIn, (req, res)=>{
 });
 
 app.get("/search", db.checkUserLoggedIn, (req, res)=>{
-    res.sendFile(path.join(__dirname, 'search.html'))
-    // const database = req.query.database.toLowerCase()
-    // if(database === "postgres"){ 
-    //     db.searchPost(req, res)
-    // }else if(database === "mongodb"){
-    //     db.searchMongo(req, res)
-    // }else if(database === "both"){
-    //     db.searchPost(req, res)
-    //     db.searchMongo(req, res)
-    // }
+    res.render('search.html')
 });
 
 app.get("/logout", function(req, res){
-    res.sendFile(path.join(__dirname, 'logout.html'))
+    res.render('logout.html')
 })
 
 app.post('/logout', db.logOut);
